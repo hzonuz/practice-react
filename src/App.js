@@ -1,26 +1,86 @@
 import React from 'react';
-import logo from './logo.svg';
+import logo, { ReactComponent } from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export class Clock extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {date: new Date()};
+  }
+ 
+  componentDidMount() {
+    this.timer = setInterval(
+      () => this.sec() ,
+      1000
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+
+  sec() {
+    this.setState({
+      date: new Date()
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <h1 className="mamad">It is {this.state.date.toLocaleTimeString()}</h1>
+      </div>
+    );
+  }
 }
 
-export default App;
+export class Toggle extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {isOn : true};
+    this.clickHandler = this.clickHandler.bind(this);
+  }
+
+  clickHandler() {
+    this.setState(state => ({
+      isOn: !state.isOn
+    }));
+  }
+
+  render() {
+    return (
+      <div className="mamadDiv"><button onClick={this.clickHandler} className="mamadOn">
+      {this.state.isOn ? 'ON' : 'OFF'}
+    </button></div>      
+    )
+  }
+}
+
+export class NameForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
+
+    this.changeHandler = this.changeHandler.bind(this);
+    this.submitHandler = this.submitHandler.bind(this);
+  }
+
+  changeHandler(event) {
+    this.setState({value: event.target.value});
+  }
+
+  submitHandler(event) {
+    alert('A name was submitted: ' + this.state.value);
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <div className="mamadForm">
+        <form onSubmit={this.submitHandler}>
+          <input type="text" value={this.state.value} onChange={this.changeHandler}/>      
+        </form>
+      </div>
+    )
+  }
+}

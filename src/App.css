@@ -1,8 +1,25 @@
-.App {
+.mamad {
   text-align: center;
 }
 
-.App-logo {
+.mamadOn {
+  padding: 10px;
+  margin-left: 20px;
+  background-color: rgb(45, 165, 125);
+  color: white;
+  border-radius: 10px;
+  border: none;
+}
+
+.mamadForm {
+  text-align: center;
+}
+
+.mamadDiv {
+  text-align: center;
+  padding-bottom: 20px;
+}
+/* .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -35,4 +52,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
