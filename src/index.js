@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import {Clock , Toggle , NameForm} from './App';
+import {Clock , Toggle , NameForm , ThemedButton} from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
@@ -9,6 +9,7 @@ ReactDOM.render(
     <Clock />
     <Toggle />
     <NameForm />
+    <ThemedButton />
   </React.StrictMode>,
   document.getElementById('root')
 );

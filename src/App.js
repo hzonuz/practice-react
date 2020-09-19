@@ -84,3 +84,37 @@ export class NameForm extends React.Component {
     )
   }
 }
+
+const themes = {
+  light: {
+    foreground: '#000000',
+    background: '#eeeeee',
+  },
+  dark: {
+    foreground: '#ffffff',
+    background: '#222222',
+  },
+};
+
+const ThemeContext = React.createContext(
+  themes.dark // default value
+);
+
+export class ThemedButton extends React.Component {
+  render() {
+    let props = this.props;
+    let theme = this.context;
+    return (
+      <div style={{textAlign: "center"}}>
+        <button
+      {...props}
+      style={{backgroundColor: theme.background}
+            , {padding: 20}
+            }
+      />
+    </div>
+      
+    );
+  }
+}
+ThemedButton.contextType = ThemeContext;
