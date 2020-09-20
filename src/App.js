@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import logo, { ReactComponent } from './logo.svg';
 import './App.css';
 
@@ -85,6 +85,8 @@ export class NameForm extends React.Component {
   }
 }
 
+//-------------------------------------------------
+
 const themes = {
   light: {
     foreground: '#000000',
@@ -100,21 +102,76 @@ const ThemeContext = React.createContext(
   themes.dark // default value
 );
 
-export class ThemedButton extends React.Component {
+function ThemedButton(props) {
+  let theme = useContext(ThemeContext);
+  return (
+    <div style={{textAlign: "center"}}>
+      <button
+    {...props}
+    style={{backgroundColor: theme.background}
+          , {padding: 10}
+          }
+    />
+  </div>   
+  );
+}
+
+// class ThemedButton extends React.Component {
+//   render() {
+//     let props = this.props;
+//     let theme = this.context;
+//     return (
+//       <div style={{textAlign: "center"}}>
+//         <button
+//       {...props}
+//       style={{backgroundColor: theme.background}
+//             , {padding: 10}
+//             }
+//       />
+//     </div>
+      
+//     );
+//   }
+// }
+
+function Toolbar(props) {
+  return (
+    <ThemedButton onClick={props.changeTheme}>
+      Change Theme
+    </ThemedButton>
+  );
+}
+
+export class ContextTest extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      theme: themes.light,
+    };
+
+    this.toggleTheme = () => {
+      this.setState(state => ({
+        theme:
+          themes.light
+          // state.theme === themes.dark
+          //   ? themes.light
+          //   : themes.dark,
+      }));
+    };
+  }
+
   render() {
-    let props = this.props;
-    let theme = this.context;
+    // The ThemedButton button inside the ThemeProvider
+    // uses the theme from state while the one outside uses
+    // the default dark theme
     return (
-      <div style={{textAlign: "center"}}>
-        <button
-      {...props}
-      style={{backgroundColor: theme.background}
-            , {padding: 20}
-            }
-      />
-    </div>
+      <div>
+      <ThemeContext.Provider value={this.state.theme}>
+        <Toolbar changeTheme={this.toggleTheme} />
+      </ThemeContext.Provider>
+      <ThemedButton />
+      </div>
       
     );
   }
 }
-ThemedButton.contextType = ThemeContext;
