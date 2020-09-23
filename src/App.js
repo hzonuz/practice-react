@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import Counter from './Counter';
+import Counter from './state-management/Counter';
 import './App.css';
 import {Provider} from "react-redux";
 import store from './state-management/store';
