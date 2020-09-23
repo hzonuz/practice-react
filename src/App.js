@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import Counter from './Counter';
 import './App.css';
 import {Provider} from "react-redux";
-import store from './store';
+import store from './state-management/store';
 
 export class Clock extends React.Component {
   constructor(props){
