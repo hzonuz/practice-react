@@ -87,16 +87,14 @@ export class NameForm extends React.Component {
   }
 }
 
-//-------------------------------------------------
+//###############################################
 
 const themes = {
   light: {
-    foreground: '#000000',
     background: '#eeeeee',
   },
   dark: {
-    foreground: '#ffffff',
-    background: '#222222',
+    background: '#559955',
   },
 };
 
@@ -105,36 +103,16 @@ const ThemeContext = React.createContext(
 );
 
 function ThemedButton(props) {
-  let theme = useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
   return (
     <div style={{textAlign: "center"}}>
       <button
     {...props}
-    style={{backgroundColor: theme.background}
-          , {padding: 10}
-          }
+    style={{backgroundColor: theme.background}}
     />
   </div>   
   );
 }
-
-// class ThemedButton extends React.Component {
-//   render() {
-//     let props = this.props;
-//     let theme = this.context;
-//     return (
-//       <div style={{textAlign: "center"}}>
-//         <button
-//       {...props}
-//       style={{backgroundColor: theme.background}
-//             , {padding: 10}
-//             }
-//       />
-//     </div>
-      
-//     );
-//   }
-// }
 
 function Toolbar(props) {
   return (
@@ -154,10 +132,9 @@ export class ContextTest extends React.Component {
     this.toggleTheme = () => {
       this.setState(state => ({
         theme:
-          themes.light
-          // state.theme === themes.dark
-          //   ? themes.light
-          //   : themes.dark,
+          state.theme === themes.dark
+            ? themes.light
+            : themes.dark,
       }));
     };
   }
@@ -168,24 +145,26 @@ export class ContextTest extends React.Component {
     // the default dark theme
     return (
       <div>
-      <ThemeContext.Provider value={this.state.theme}>
-        <Toolbar changeTheme={this.toggleTheme} />
-      </ThemeContext.Provider>
-      <ThemedButton />
-      </div>
-      
+        <div className = "mamadInBeach">
+          <ThemeContext.Provider value={this.state.theme}>
+          <Toolbar changeTheme={this.toggleTheme} />
+          </ThemeContext.Provider>
+        </div>
+      </div>      
     );
   }
 }
 
-//-------------------------------------------------
+//###############################################
 
 export class CounterApp extends React.Component {
   render() {
     return (
-      <Provider store = {store}>
-        <Counter />
-      </Provider>
+      <div className = "mamadov">
+        <Provider store = {store}>
+           <Counter />
+        </Provider></div>
+      
     );   
   }
 }
