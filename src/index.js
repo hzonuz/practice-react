@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import {Clock , Toggle , NameForm , ContextTest} from './App';
+import {Clock , Toggle , NameForm , ContextTest , CounterApp} from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
@@ -10,6 +10,7 @@ ReactDOM.render(
     <Toggle />
     <NameForm />
     <ContextTest />
+    <CounterApp />
   </React.StrictMode>,
   document.getElementById('root')
 );

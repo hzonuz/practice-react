@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
-import logo, { ReactComponent } from './logo.svg';
+import Counter from './Counter';
 import './App.css';
+import {Provider} from "react-redux";
+import store from './store';
 
 export class Clock extends React.Component {
   constructor(props){
@@ -175,3 +177,16 @@ export class ContextTest extends React.Component {
     );
   }
 }
+
+//-------------------------------------------------
+
+export class CounterApp extends React.Component {
+  render() {
+    return (
+      <Provider store = {store}>
+        <Counter />
+      </Provider>
+    );   
+  }
+}
+
